@@ -1,0 +1,49 @@
+{% extends 'musicplayer/basic.html' %}
+{% block css %}
+<style>
+img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+div.mid {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+</style>
+{% endblock %}
+{% block body %}
+{% load static %}
+
+
+<div class="container my-3">
+  <div class="row">
+    <div class="row my-3">
+        <div class="col-md-5 my-2">
+          {% for range,music in allSongs %}
+              {% for i in range %}
+              <span >
+                <img width="275px" height="275px"  src="/media/{{i.image}}" alt="">
+              </span>
+          </div>
+          <div  class="col-md-7 my-4 mid" style="border: 1px solid black;height:250px;">
+              <div class="my-3" style="height:230px;">
+                  <h4 class="my-2"> Song : {{i.song_name}}</h4>
+                  <h4 class="my-2">Artist : {{i.song_artist}}</h4>
+                  <h4 class="my-2">Movie : {{i.movie_name}}</h4>
+                  <audio controls class="my-2">
+                  <source src="/media/{{i.song}}" type="audio/mpeg">
+                  </audio>
+              </div>
+          </div>
+          
+          <div class="col-md-5 my-2">
+              {% endfor %}
+          {% endfor %}</div>
+  
+      
+    </div>
+  </div>
+</div>
+{% endblock %}
