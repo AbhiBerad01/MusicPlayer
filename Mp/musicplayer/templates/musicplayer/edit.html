@@ -58,7 +58,7 @@
 
 <div class="container">
     <div class="row">
-                <div class="container d-flex h-100 justify-content-center align-items-center my-2 col-md-9">
+                <div class="container d-flex h-100 justify-content-center align-items-center col-md-9">
                     <form action="/musicplayer/edit/{{music.song_id}}" method="post" enctype="multipart/form-data">{% csrf_token %}
                         <div class="row g-3 align-items-center" style="display: inline;">
                             <div class="form-group col-auto ">
@@ -87,33 +87,27 @@
                             </div>
                             
                             <div class="form-group col-auto ">
+                                <label for="category" class="col-form-label">Song Language</label>
+                                <select class="form-select form-select-sm" name="category" aria-label=".form-select-sm example">
+                                  <option value="{{music.song_language}}" selected>{{music.song_language}}</option>
+                                  <option value="Hindi">Hindi</option>
+                                  <option value="English">English</option>
+                                </select>
+                              </div>
+                              <div class="form-group col-auto ">
                                 <label for="category" class="col-form-label">Song Category</label>
-                                <select  class="form-select form-select-sm" name="category" aria-label=".form-select-sm example">
+                                <select class="form-select form-select-sm" name="category" aria-label=".form-select-sm example">
                                   <option value="{{music.song_category}}" selected>{{music.song_category}}</option>
-                                  <option value="Hindi-Romantic">Hindi-Romantic</option>
-                                  <option value="Hindi-Sad">Hindi-Sad</option>
-                                  <option value="Hindi-Workout">Hindi-Workout</option>
-                                  <option value="Hindi-Chill">Hindi-Chill</option>
-                                  <option value="Hindi-Pop">Hindi-Pop</option>
-                                  <option value="Hindi-Drive">Hindi-Drive</option>
-                                  <option value="Hindi-New Release">Hindi-New Release</option>
-                                  <option value="Hindi-Remix">Hindi-Remix</option>
-                                  <option value="Hindi-Punjabi">Hindi-Punjabi</option>
-                                  <option value="Hindi-HipHop">Hindi-HipHop</option>
-                                  <option value="Hindi-Party">Hindi-Party</option>
-                                  <option value="Hindi-Retro">Hindi-Retro</option>
-                                  <option value="Hindi-90's">Hindi-90's</option>
-                                  <option value="English-Romantic">English-Romantic</option>
-                                  <option value="English-Sad">English-Sad</option>
-                                  <option value="English-Workout">English-Workout</option>
-                                  <option value="English-Chill">English-Chill</option>
-                                  <option value="English-Pop">English-Pop</option>
-                                  <option value="English-Drive">English-Drive</option>
-                                  <option value="English-New Release">English-New Release</option>
-                                  <option value="English-Remix">English-Remix</option>
-                                  <option value="English-HipHop">English-HipHop</option>
-                                  <option value="English-Party">English-Party</option>
-                                  <option value="English-Retro">English-Retro</option>
+                                  <option value="Romantic">Romantic</option>
+                                  <option value="Sad">Sad</option>
+                                  <option value="Workout">Workout</option>
+                                  <option value="Chill">Chill</option>
+                                  <option value="Drive">Drive</option>
+                                  <option value="New Release">New Release</option>
+                                  <option value="Punjabi">Punjabi</option>
+                                  <option value="HipHop">HipHop</option>
+                                  <option value="Party">Party</option>
+                                  <option value="Retro">Retro</option>
                                 </select>
                               </div>
                             <div class="form-group col-auto ">
@@ -132,9 +126,11 @@
                                 <select class="form-select form-select-sm" name="emo"
                                     aria-label=".form-select-sm example">
                                     <option value="{{music.emojies}}" selected>&#{{music.emojies}};</option>
-                                    <option value="128514">&#128514;</option>
+                                    <option value="128525">&#128525;</option>
                                     <option value="128512">&#128512;</option>
-                                    <option value="3">Three</option>
+                                    <option value="128532">&#128532;</option>
+                                    <option value="128526">&#128526;</option>
+                                    <option value="128537">&#128537;</option>
                                 </select>
                             </div>
                             <div class="form-group col-auto">
@@ -158,7 +154,7 @@
                         Your browser does not support the audio tag.
                     </audio>
                 </span><span><h3 style="position: relative;top: 200px;">Image:</h3>
-                <img src="/media/{{music.image}}" alt="" style="position: relative;top:200px">
+                <img src="/media/{{music.image}}" alt="" style="position: relative;top:200px" height="275px" width="275px">
             </span>
             </div>
         </div>

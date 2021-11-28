@@ -74,26 +74,74 @@ def edit(request, song_id):
                 music.save()
                 return redirect('/musicplayer/edit/' + sag)
     except:
-        if request.method == "POST":
-            sid = request.POST['id']
-            sag = str(sid)
-            sname = request.POST['song_name']
-            artist = request.POST['artist']
-            mname = request.POST['movie_name']
-            category = request.POST['category']
-            emoji = request.POST['emo']
-            emo = request.POST['emotions']
-            if song_id != '0':
-                music = MusicDB.objects.get(song_id=song_id)
-                music.song_id = sid
-                music.song_name = sname
-                music.song_artist = artist
-                music.movie_name = mname
-                music.song_category = category
-                music.emotions = emo
-                music.emojies = emoji
-                music.save()
-                return redirect('/musicplayer/edit/' + sag)
+        try:
+            if request.method == "POST":
+                sid = request.POST['id']
+                sag = str(sid)
+                sng = request.FILES['son']
+                sname = request.POST['song_name']
+                artist = request.POST['artist']
+                mname = request.POST['movie_name']
+                category = request.POST['category']
+                emoji = request.POST['emo']
+                emo = request.POST['emotions']
+                if song_id != '0':
+                    music = MusicDB.objects.get(song_id=song_id)
+                    music.song_id = sid
+                    music.song_name = sname
+                    music.song_artist = artist
+                    music.movie_name = mname
+                    music.song_category = category
+                    music.emojies = emoji
+                    music.emotions = emo
+                    music.song = sng
+                    music.save()
+                    return redirect('/musicplayer/edit/' + sag)
+        except:
+            try:
+                if request.method == "POST":
+                    sid = request.POST['id']
+                    sag = str(sid)
+                    img = request.FILES['ima']
+                    sname = request.POST['song_name']
+                    artist = request.POST['artist']
+                    mname = request.POST['movie_name']
+                    category = request.POST['category']
+                    emoji = request.POST['emo']
+                    emo = request.POST['emotions']
+                    if song_id != '0':
+                        music = MusicDB.objects.get(song_id=song_id)
+                        music.song_id = sid
+                        music.song_name = sname
+                        music.song_artist = artist
+                        music.movie_name = mname
+                        music.song_category = category
+                        music.emojies = emoji
+                        music.emotions = emo
+                        music.image = img
+                        music.save()
+                        return redirect('/musicplayer/edit/' + sag)
+            except:
+                if request.method == "POST":
+                    sid = request.POST['id']
+                    sag = str(sid)
+                    sname = request.POST['song_name']
+                    artist = request.POST['artist']
+                    mname = request.POST['movie_name']
+                    category = request.POST['category']
+                    emoji = request.POST['emo']
+                    emo = request.POST['emotions']
+                    if song_id != '0':
+                        music = MusicDB.objects.get(song_id=song_id)
+                        music.song_id = sid
+                        music.song_name = sname
+                        music.song_artist = artist
+                        music.movie_name = mname
+                        music.song_category = category
+                        music.emotions = emo
+                        music.emojies = emoji
+                        music.save()
+                        return redirect('/musicplayer/edit/' + sag)
     music = MusicDB.objects.filter(song_id=song_id)
     return render(request, 'musicplayer/edit.html', {'music': music[0]})
 
