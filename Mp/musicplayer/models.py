@@ -8,7 +8,6 @@ class MusicDB(models.Model):
     song_name = models.CharField(max_length=500)
     song_artist = models.CharField(max_length=500)
     movie_name = models.CharField(max_length=500)
-    song_language = models.CharField(max_length=500,default="Hindi")
     song_category = models.CharField(max_length=500,default="General")
     emotions = models.CharField(max_length=500,default="General")
     emojies = models.CharField(max_length=500,default="General")

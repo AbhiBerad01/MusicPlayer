@@ -34,7 +34,8 @@ div.mid {
    <li> Try different keywords.</li>
     </li>
     </ul>
-    {% endif %}
+    {% else %}
+    
     <!-- ******* -->
    
     <div class="container my-3">
@@ -49,9 +50,9 @@ div.mid {
                 </div>
                 <div  class="col-md-7 my-4 mid" style="border: 1px solid black;height:250px;">
                     <div class="my-3" style="height:230px;">
-                        <h4 class="my-2"> Song : {{i.song_name}}</h4>
-                        <h4 class="my-2">Artist : {{i.song_artist}}</h4>
-                        <h4 class="my-2">Movie : {{i.movie_name}}</h4>
+                      <strong>  <h4 class="my-2 me"> Song : {{i.song_name}}</h4></strong> 
+                      <strong> <h4 class="my-2 me">Artist : {{i.song_artist}}</h4></strong> 
+                     <strong> <h4 class="my-2 me">Album : {{i.movie_name}}</h4></strong> 
                         <audio controls class="my-2">
                         <source src="/media/{{i.song}}" type="audio/mpeg">
                         </audio>
@@ -62,7 +63,7 @@ div.mid {
                     {% endfor %}
                 {% endfor %}</div>
         
-            
+                {% endif %}
           </div>
         </div>
       </div>

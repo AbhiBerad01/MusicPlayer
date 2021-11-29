@@ -176,6 +176,12 @@ def contact(request):
     return render(request, 'musicplayer/contact.html')
 
 
+def contactInfo(request):
+    cont = Contact.objects.all()
+    params = {"cont": cont}
+    return render(request, 'musicplayer/contactInfo.html', params)
+
+
 def about(request):
     return render(request, 'musicplayer/about.html')
 
@@ -201,9 +207,38 @@ def search(request):
         songtemp = MusicDB.objects.filter(song_category=cat)
         music = [item for item in songtemp if searchMatch(query, item)]
         if len(query) < 3:
-            return HttpResponse("Please Enter Proper Input")
+            return redirect('home')
         if len(music) != 0:
             n = len(music)
             allSongs.append([music, range(1, n)])
     params = {'allSongs': allSongs, 'query': query}
     return render(request, 'musicplayer/search.html', params)
+
+
+def controlSearchMatch(query, item):
+    if (query in item.song_name.lower() or query in item.song_name or query in item.song_name.upper() or
+            query in item.song_artist.lower() or query in item.song_artist or query in item.song_artist.upper() or
+            query in item.movie_name.lower() or query in item.movie_name or query in item.movie_name.upper() or
+            query in item.song_category.lower() or query in item.song_category or query in item.song_category.upper() or
+            query in item.emotions.lower() or query in item.emotions or query in item.emotions.upper() or
+            query in item.emojies):
+        return True
+    else:
+        return False
+
+
+def controlSearch(request):
+    query = request.GET['search']
+    allSongs = []
+    catsongs = MusicDB.objects.values('song_category', 'song_id')
+    cats = {item['song_category'] for item in catsongs}
+    for cat in cats:
+        songtemp = MusicDB.objects.filter(song_category=cat)
+        music = [item for item in songtemp if controlSearchMatch(query, item)]
+        if len(query) < 3:
+            return redirect('control')
+        if len(music) != 0:
+            n = len(music)
+            allSongs.append([music, range(1, n)])
+    params = {'allSongs': allSongs, 'query': query}
+    return render(request, 'musicplayer/controlsearch.html', params)

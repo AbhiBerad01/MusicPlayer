@@ -57,6 +57,7 @@
       padding-left: 0;
       padding-right: 0;
     }
+  
   </style>
   {% block css %}{% endblock %}
 </head>
@@ -82,7 +83,7 @@
           <li class="nav-item">
             <a class="nav-link" href="/musicplayer/contact">Contact</a>
           </li>
-          <li class="nav-item dropdown">
+          <li class="nav-item dropdown mx-5">
             <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdown" role="button"
               data-bs-toggle="dropdown" aria-expanded="false">
               Welcome {{request.user}}
@@ -107,9 +108,12 @@
         <form class="d-flex mx-2 my-2" action="/musicplayer/search" method="get">
           <select class="form-select form-select-sm" name="search" aria-label=".form-select-sm example">
             <option value="" selected>Search by Emojies</option>
-            <option value="128514">&#128514;</option>
-            <option value="2222">Two</option>
-            <option value="3222">Three</option>
+            <option value="128525">&#128525;</option>
+            <option value="128512">&#128512;</option>
+            <option value="128532">&#128532;</option>
+            <option value="128526">&#128526;</option>
+            <option value="128537">&#128537;</option>
+          </select>
           </select>
           <button class="btn btn-outline-primary mx-2" type="submit">Search</button>
         </form>
