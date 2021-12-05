@@ -26,9 +26,11 @@ def home(request):
     params = {"allSongs": allSongs}
     return render(request, 'home/index.html', params)
 
+
 @csrf_exempt
 def setLogin(request):
     return redirect('handleLogin')
+
 
 @csrf_exempt
 def handleLogin(request):
@@ -51,9 +53,11 @@ def handleLogin(request):
             return redirect('login')
     return render(request, 'home/login.html', {'context': RequestContext(request)})
 
+
 @csrf_exempt
 def signup(request):
     return redirect('handleSignup')
+
 
 @csrf_exempt
 def handleSignup(request):
@@ -85,5 +89,3 @@ def loginOut(request):
 
 def superUser(request):
     return render(request, 'musicplayer/admin.html')
-
-
