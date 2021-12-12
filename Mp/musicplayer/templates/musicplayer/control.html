@@ -37,11 +37,31 @@
         }
     </style>
 
+ <style>
+  #myBtn {
+  display: none; /* Hidden by default */
+  position: fixed; /* Fixed/sticky position */
+  bottom: 20px; /* Place the button at the bottom of the page */
+  right: 30px; /* Place the button 30px from the right */
+  z-index: 99; /* Make sure it does not overlap */
+  border: none; /* Remove borders */
+  outline: none; /* Remove outline */
+<!--  background-color: red; /* Set a background color */-->
+  color: white; /* Text color */
+  cursor: pointer; /* Add a mouse pointer on hover */
+  padding: 15px; /* Some padding */
+  border-radius: 10px; /* Rounded corners */
+  font-size: 18px; /* Increase font size */
+}
 
+#myBtn:hover {
+  background-color: #555; /* Add a dark-grey background on hover */
+}
+</style>
 </head>
 
 <body class="d-flex text-center text-white bg-dark">
-
+<button class="btn btn-primary" onclick="topFunction()" id="myBtn" title="Go to top">&uarr;</button>
     <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
         <header class="mb-auto">
             <div>
@@ -91,7 +111,7 @@
                         <td>{{music.song_artist}}</td>
                         <td>{{music.movie_name}}</td>
                         <td>{{music.song_category}}</td>
-                        <td>{{music.emotions}}</td>
+                        <td>{{music.emotions|slice:"0:5"}}</td>
                         <td>&#{{music.emojies}};</td>
                         <td><a href="/musicplayer/edit/{{music.song_id}}"><button class="btn btn-primary">Edit</button></a></td>
                          <!-- <td><a href="/musicplayer/delete/{{music.song_id}}"><button class="btn btn-primary float-start">Delete</button></a></td> -->
@@ -111,7 +131,26 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>
+<script>//Get the button:
+mybutton = document.getElementById("myBtn");
 
+// When the user scrolls down 20px from the top of the document, show the button
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+    mybutton.style.display = "block";
+  } else {
+    mybutton.style.display = "none";
+  }
+}
+
+// When the user clicks on the button, scroll to the top of the document
+function topFunction() {
+  document.body.scrollTop = 0; // For Safari
+  document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+}</script>
+<!--//voice recognition-->
         <script>
 
 

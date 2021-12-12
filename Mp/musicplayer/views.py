@@ -1,5 +1,6 @@
 from math import ceil
 
+import wordninja
 from django.contrib import messages
 from django.core.mail import send_mail
 from django.http import HttpResponse
@@ -186,13 +187,51 @@ def about(request):
     return render(request, 'musicplayer/about.html')
 
 
+def match(query, item):
+    print("running")
+    # print(item)
+    b = wordninja.split(query.lower())
+    a = wordninja.split(item)
+    n = range(0, len(a))
+    m = range(0, len(b))
+    try:
+        for i in m:
+            for j in n:
+                print(b[i], a[j])
+                if b[i] == a[j]:
+                    print(b[i],a[j])
+                    return True
+                else:
+                    continue
+    except:
+        return False
+
+
+# impliment testme named file logic
+
 def searchMatch(query, item):
-    if (query in item.song_name.lower() or query in item.song_name or query in item.song_name.upper() or
-            query in item.song_artist.lower() or query in item.song_artist or query in item.song_artist.upper() or
-            query in item.movie_name.lower() or query in item.movie_name or query in item.movie_name.upper() or
-            query in item.song_category.lower() or query in item.song_category or query in item.song_category.upper() or
-            query in item.emotions.lower() or query in item.emotions or query in item.emotions.upper() or
-            query in item.emojies):
+    if (query.lower() in item.song_name.lower() or
+            query.lower() in item.song_artist.lower() or
+            query.lower() in item.movie_name.lower() or
+            query.lower() in item.song_category.lower() or
+            query.lower() in item.emotions.lower() or
+            query in item.emojies
+    ):
+        print('1')
+        return True
+    elif (item.song_name.lower() in query.lower() or
+          item.song_artist.lower() in query.lower() or
+          item.movie_name.lower() in query.lower() or
+          item.song_category.lower() in query.lower() or
+          item.emotions.lower() in query.lower()
+    ):
+        print('2')
+        return True
+    elif match(query, item.emotions.lower()):
+        print('r')
+        return True
+    elif match(query, item.song_category.lower()):
+        print('r')
         return True
     else:
         return False
@@ -216,11 +255,11 @@ def search(request):
 
 
 def controlSearchMatch(query, item):
-    if (query in item.song_name.lower() or query in item.song_name or query in item.song_name.upper() or
-            query in item.song_artist.lower() or query in item.song_artist or query in item.song_artist.upper() or
-            query in item.movie_name.lower() or query in item.movie_name or query in item.movie_name.upper() or
-            query in item.song_category.lower() or query in item.song_category or query in item.song_category.upper() or
-            query in item.emotions.lower() or query in item.emotions or query in item.emotions.upper() or
+    if (query.lower() in item.song_name.lower() or
+            query.lower() in item.song_artist.lower() or
+            query.lower() in item.movie_name.lower() or
+            query.lower() in item.song_category.lower() or
+            query.lower() in item.emotions.lower() or
             query in item.emojies):
         return True
     else:

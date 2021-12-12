@@ -20,7 +20,7 @@ div.mid {
 
 {% block body %}
 <div class="container my-3">
-    <h2>Search results : </h2>
+    <h2>Search results : {{query}}</h2>
     <!-- ****** -->
 
     {% if allSongs|length < 1 %}
@@ -86,4 +86,5 @@ div.mid {
      });
  });
 </script>
+
 {% endblock %}

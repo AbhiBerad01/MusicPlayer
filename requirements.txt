@@ -1,1 +1,3 @@
 django vesion - 3.2.9
+Django~=3.2.7
+wordninja~=2.0.0
