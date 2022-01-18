@@ -68,15 +68,21 @@ def handleSignup(request):
         email = request.POST['email']
         pass1 = request.POST['pass1']
         pass2 = request.POST['pass2']
-        if len(username) < 10:
-            return HttpResponse('username error')
+        if len(username) < 5:
+            return HttpResponse("<h2>username error<h2><br><li><a href='/login'>Log in</a></li><br><li><a  "
+                                "href='/signup'>Sign Up</a></li>")
+        if User.objects.filter(username=username).exists():
+            return HttpResponse("<h2>Username already exist<h2><br><li><a href='/login'>Log in</a></li><br><li><a  "
+                                "href='/signup'>Sign Up</a></li>")
         if pass1 != pass2:
             # message.error(request,"Password Not Matched")
-            return HttpResponse('pass error')
+            return HttpResponse("<h2>pass error<h2><br><li><a href='/login'>Log in</a></li><br><li><a  "
+                                "href='/signup'>Sign Up</a></li>")
         myuser = User.objects.create_user(username, email, pass1)
         myuser.first_name = fname
         myuser.last_name = lname
         myuser.save()
+        login(request, myuser)
         # message.success(request,"Your Account has been Created Succeessfully")
         return redirect('/musicplayer')
     return render(request, 'home/signup.html')
