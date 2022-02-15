@@ -188,7 +188,6 @@ def about(request):
 
 
 def match(query, item):
-    print("running")
     # print(item)
     b = wordninja.split(query.lower())
     a = wordninja.split(item)
@@ -197,9 +196,7 @@ def match(query, item):
     try:
         for i in m:
             for j in n:
-                print(b[i], a[j])
                 if b[i] == a[j]:
-                    print(b[i],a[j])
                     return True
                 else:
                     continue
@@ -217,7 +214,6 @@ def searchMatch(query, item):
             query.lower() in item.emotions.lower() or
             query in item.emojies
     ):
-        print('1')
         return True
     elif (item.song_name.lower() in query.lower() or
           item.song_artist.lower() in query.lower() or
@@ -225,13 +221,10 @@ def searchMatch(query, item):
           item.song_category.lower() in query.lower() or
           item.emotions.lower() in query.lower()
     ):
-        print('2')
         return True
     elif match(query, item.emotions.lower()):
-        print('r')
         return True
     elif match(query, item.song_category.lower()):
-        print('r')
         return True
     else:
         return False
